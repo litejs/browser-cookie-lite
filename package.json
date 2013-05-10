@@ -1,6 +1,6 @@
 {
   "name": "browser-cookie-lite",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "Cookie setter/getter for browser",
   "main": "browser-cookie-lite.js",
