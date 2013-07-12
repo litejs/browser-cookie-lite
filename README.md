@@ -1,3 +1,11 @@
+[1]: https://raw.github.com/litejs/browser-cookie-lite/master/min.browser-cookie.js
+[2]: https://raw.github.com/litejs/browser-cookie-lite/master/browser-cookie.js
+[rfc6265]: http://tools.ietf.org/html/rfc6265
+
+
+
+    @version  0.2.0
+    @date     2013-07-13
 
 
 Browser Cookie Lite
@@ -5,7 +13,7 @@ Browser Cookie Lite
 
 Cookie getter/setter for browser.
 Download [compressed][1]
-(283 bytes, 222 bytes gzipped)
+(283 bytes, 237 bytes gzipped)
 or [uncompressed][2] source.
 
 
@@ -82,9 +90,5 @@ External links
 Copyright (c) 2012 Lauri Rooden &lt;lauri@rooden.ee&gt;  
 [The MIT License](http://lauri.rooden.ee/mit-license.txt)
 
-
-[1]: https://raw.github.com/litejs/browser-cookie-lite/master/min.js
-[2]: https://raw.github.com/litejs/browser-cookie-lite/master/browser-cookie-lite.js
-[rfc6265]: http://tools.ietf.org/html/rfc6265
 
 

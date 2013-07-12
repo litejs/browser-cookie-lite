@@ -1,35 +1,80 @@
+# $< isn't quite portable (IIRC, bsdmake has the meaning of $^ and $< exactly swapped to what gmake uses)
 
 
-NAME=$(shell sed '/"name":/!d;s///;s/[ ,"]//g' package.json)
-FILE=$(shell sed '/"main":/!d;s///;s/[ ,"]//g' package.json)
-VERSION=$(shell sed '/"version":/!d;s///;s/[ ,"]//g' package.json)
+read_conf = $(shell sed '/"$(1)":/!d;s///;s/[ 	,"]//g' package.json)
 
-.PHONY: test
+NAME      = $(call read_conf,name)
+MAIN      = $(call read_conf,main)
+VERSION   = $(call read_conf,version)
+ALL      := min.$(MAIN)
+CUSTOM   :=
+DATE      = $(shell date +%F)
 
-all: update-version compile test update-readme
 
-compile:
-	# Call Google Closure Compiler to produce a minified version of $(FILE)
-	@curl -s \
-		    --data-urlencode 'output_info=compiled_code' \
-				--data-urlencode 'output_format=text' \
-				--data-urlencode 'js_code@$(FILE)' \
-				'http://closure-compiler.appspot.com/compile' > min.js
 
-update-readme: SIZE=$(shell cat min.js | wc -c)
-update-readme: SIZE_GZ=$(shell gzip -c min.js | wc -c)
-update-readme:
-	@printf "Original Size %s Compiled Size %s or %s gzipped\n" \
-	        "$$(cat $(FILE) | wc -c) bytes" \
-	        "$(SIZE) bytes" \
-	        "$(SIZE_GZ) bytes"
-	@sed -i '/ bytes, .* gzipped/s/.*/($(SIZE) bytes, $(SIZE_GZ) bytes gzipped)/' README.md
+compile_output := compiled_code
+define COMPILE
+	@curl -s --data-urlencode 'output_info=$(compile_output)' \
+		--data-urlencode 'output_format=text' \
+		--data-urlencode 'js_code@$(1)' \
+		'http://closure-compiler.appspot.com/compile' > $(2)
+	@echo "# Compiled $(1) -> $(2) from $$(wc -c <"$(1)") to $$(wc -c <"$(2)") bytes"
+endef
+
+define TOGGLE
+	# Toggle comments '$(1)' and save to $(2)
+	@sed -E -e 's,//\*\* ($(1)),/* $(1),' $(MAIN) > $(2)
+endef
+
+define CUSTOM_TARGET
+min.$(1).js: $(MAIN)
+	$$(call TOGGLE,$(flags-$(1)),$(1).js)
+	$$(call COMPILE,$(1).js,$$@)
+	@rm $(1).js
+endef
+
+
+
+-include *.mk
+
+
+
+.PHONY: help test
+
+#- Build commands are:
+#- 
+#-    all             Build everything
+#-    test            Run tests
+#- 
+help:
+	@sed -n "/^#- /s///p" $(MAKEFILE_LIST)
+
+ALL += $(foreach x,$(CUSTOM),min.$(x).js)
+$(foreach x, $(CUSTOM), $(eval $(call CUSTOM_TARGET,$(x)) ))
+
+all: $(ALL) test update-readme
+
+
+min.%.js: %.js package.json
+	@sed -i '/@version/s/[^ ]*$$/$(VERSION)/' $*.js
+	$(call COMPILE,$*.js,$@)
+
+
+
+%.error: compile_output=errors
+%.error: %.js
+	$(call COMPILE,$*.js,$@)
+	@cat $@
+
+
+update-readme: $(MAIN) package.json
+	@sed -i '/@version/s/[^ ]*$$/$(VERSION)/' README.md
+	@sed -i '/@date/s/[^ ]*$$/$(DATE)/' README.md
+	@sed -i "/ bytes, .* gzipped/s/.*/($$(wc -c <min.$(MAIN)) bytes, $$(gzip -c min.$(MAIN) | wc -c) bytes gzipped)/" README.md
 
 update-readme-from-source:
-	@sed -e '/\/\*/,/\*\//!d' -e 's,[ /]*\*[ /]\?,,' -e 's/^@/    @/' $(FILE) > README.md
+	@sed -e '/\/\*/,/\*\//!d' -e 's,[ /]*\*[ /]\?,,' -e 's/^@/    @/' $(MAIN) > README.md
 
-update-version:
-	@sed -i '/@version/s/[^ ]*$$/$(VERSION)/' $(FILE)
 
 update-tests:
 	@printf "$$(cat test/html.tpl)" "$$(for file in test/*.liquid; do printf '\n\n\n<script type="text/liquid">\n%s\n</script>' "$$(cat $$file)"; done)" > test/test.html
@@ -37,18 +82,10 @@ update-tests:
 css-docs:
 	@styledocco -n "$(NAME)" css
 
-error:
-	@curl -s \
-		    --data-urlencode 'output_info=errors' \
-				--data-urlencode 'output_format=text' \
-				--data-urlencode 'js_code@$(FILE)' \
-				'http://closure-compiler.appspot.com/compile'
 
 test:
-	@node test/run.js
+	@node tests/run.js
 
 
-print: *.js
-	@echo $?
-	touch print
+
 
