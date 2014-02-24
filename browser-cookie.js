@@ -22,3 +22,5 @@ function Cookie(name, value, ttl, path, domain, secure) {
 	return unescape((("; "+document.cookie).split("; "+name+"=")[1]||"").split(";")[0])
 }
 
+var object = typeof exports !== 'undefined' ? exports : this;
+object.cookie = Cookie;
