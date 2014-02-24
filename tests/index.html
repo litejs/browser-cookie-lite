@@ -4,17 +4,17 @@
 
 <script>
 
-Cookie("t1", 1)
+cookie("t1", 1)
 
-Cookie("t2", 2)
-Cookie("t3", 3)
-Cookie("t2", "", -1)
+cookie("t2", 2)
+cookie("t3", 3)
+cookie("t2", "", -1)
 
 var text = " should be equal to<br>"
 , out = 
-[ Cookie("t1") == "1"
-, Cookie("t2") == ""
-, Cookie("t3") == "3"
+[ cookie("t1") == "1"
+, cookie("t2") == ""
+, cookie("t3") == "3"
 ]
 
 document.getElementById("result").innerHTML = out.join("<hr>")

@@ -1,21 +1,33 @@
 {
-	"name": "browser-cookie-lite",
-	"version": "0.2.0",
-	"license": "MIT",
-	"description": "Cookie setter/getter for browser",
-	"main": "browser-cookie.js",
-	"author": "Lauri Rooden <lauri@rooden.ee>",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/litejs/browser-cookie-lite.git"
-	},
-	"bugs": {
-		"url": "https://github.com/litejs/browser-cookie-lite/issues"
-	},
-	"keywords": [
-		"browser",
-		"cookie",
-		"litejs"
-	],
-	"readmeFilename": "README.md"
+  "name": "browser-cookie-lite",
+  "version": "0.3.0",
+  "stability": 2,
+  "license": "MIT",
+  "author": "Lauri Rooden <lauri@rooden.ee>",
+  "description": "Cookie setter/getter for browser",
+  "keywords": [
+    "browser",
+    "cookie",
+    "litejs"
+  ],
+  "main": "browser-cookie.js",
+  "readmeFilename": "README.md",
+  "scripts": {
+    "build": "node node_modules/buildman/index.js --all",
+    "travis-test": "istanbul cover ./tests/run.js && (coveralls < coverage/lcov.info || exit 0)",
+    "test": "node tests/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/litejs/browser-cookie-lite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/litejs/browser-cookie-lite/issues"
+  },
+  "devDependencies": {
+    "buildman": "^0.1.8"
+  },
+  "buildman": {
+    "browser-cookie-min.js": "browser-cookie.js"
+  }
 }

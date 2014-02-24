@@ -1,21 +1,19 @@
-[1]: https://raw.github.com/litejs/browser-cookie-lite/master/min.browser-cookie.js
-[2]: https://raw.github.com/litejs/browser-cookie-lite/master/browser-cookie.js
-[rfc6265]: http://tools.ietf.org/html/rfc6265
+[GitHub repo]: https://github.com/litejs/browser-cookie-lite
+[npm module]: https://npmjs.org/package/browser-cookie-lite
+[rfc-6265]: http://tools.ietf.org/html/rfc6265
 
 
 
-    @version  0.2.0
-    @date     2013-07-13
+    @version    0.3.0
+    @date       2014-02-25
+    @stability  2 - Unstable
+
 
 
 Browser Cookie Lite
 ===================
 
-Cookie getter/setter for browser.
-Download [compressed][1]
-(283 bytes, 237 bytes gzipped)
-or [uncompressed][2] source.
-
+Cookie setter/getter for browser
 
 API
 ---
@@ -64,6 +62,9 @@ Cookie("test", "", -1)
 Notes
 -----
 
+-   This implementation returns always a string,
+    so unset cookie and cookie set to empty string are equal.
+
 -   You SHOULD use as few and as small cookies as possible to minimize network
     bandwidth due to the Cookie header being included in every request.
 
@@ -81,7 +82,9 @@ Notes
 External links
 --------------
 
-- [rfc6265][]
+-   [GitHub repo][]
+-   [npm module][]
+-   [rfc-6265][]
 
 
 
