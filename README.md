@@ -4,7 +4,7 @@
 
 
 
-    @version    0.3.0
+    @version    0.3.1
     @date       2014-02-25
     @stability  2 - Unstable
 
@@ -20,10 +20,10 @@ API
 
 ```javascript
 // Get a cookie
-Cookie(name) -> String
+cookie(name) -> String
 
 // Set a cookie
-Cookie(name, value, [ttl], [path], [domain], [secure]) -> String
+cookie(name, value, [ttl], [path], [domain], [secure]) -> String
 ```
 
 -   **name** `String` - The name of the cookie.
@@ -49,13 +49,13 @@ Examples
 
 ```javascript
 // simple set
-Cookie("test", "a")
-// complex set - Cookie(name, value, ttl, path, domain, secure)
-Cookie("test", "a", 60*60*24, "/api", "*.example.com", true)
+cookie("test", "a")
+// complex set - cookie(name, value, ttl, path, domain, secure)
+cookie("test", "a", 60*60*24, "/api", "*.example.com", true)
 // get
-Cookie("test")
+cookie("test")
 // destroy
-Cookie("test", "", -1)
+cookie("test", "", -1)
 ```
 
 
