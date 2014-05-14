@@ -2,15 +2,18 @@
 
 
 /*
-* @version    0.3.1
-* @date       2014-02-25
-* @stability  2 - Unstable
+* @version    1.0.0
+* @date       2014-05-14
+* @stability  3 - Stable
 * @author     Lauri Rooden <lauri@rooden.ee>
 * @license    MIT License
 */
 
 
-
+/*
+* In browser `this` refers to the window object,
+* in NodeJS `this` refers to the exports.
+*/
 this.cookie = function(name, value, ttl, path, domain, secure) {
 
 	if (arguments.length > 1) {

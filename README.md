@@ -1,19 +1,15 @@
-[GitHub repo]: https://github.com/litejs/browser-cookie-lite
-[npm module]: https://npmjs.org/package/browser-cookie-lite
-[rfc-6265]: http://tools.ietf.org/html/rfc6265
 
 
-
-    @version    0.3.1
-    @date       2014-02-25
-    @stability  2 - Unstable
+    @version    1.0.0
+    @date       2014-05-14
+    @stability  3 - Stable
 
 
 
 Browser Cookie Lite
 ===================
 
-Cookie setter/getter for browser
+Get and set the cookies associated with the current document in browser.
 
 API
 ---
@@ -82,15 +78,15 @@ Notes
 External links
 --------------
 
--   [GitHub repo][]
--   [npm module][]
--   [rfc-6265][]
+-   [Source-code on Github](https://github.com/litejs/browser-cookie-lite)
+-   [Package on npm](https://npmjs.org/package/browser-cookie-lite)
+-   [RFC 6265 - HTTP State Management Mechanism](http://tools.ietf.org/html/rfc6265)
 
 
 
 ### Licence
 
-Copyright (c) 2012 Lauri Rooden &lt;lauri@rooden.ee&gt;  
+Copyright (c) 2012, 2014 Lauri Rooden &lt;lauri@rooden.ee&gt;  
 [The MIT License](http://lauri.rooden.ee/mit-license.txt)
 
 
