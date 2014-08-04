@@ -2,8 +2,8 @@
 
 
 /*
-* @version    1.0.0
-* @date       2014-05-14
+* @version    1.0.1
+* @date       2014-08-04
 * @stability  3 - Stable
 * @author     Lauri Rooden <lauri@rooden.ee>
 * @license    MIT License
@@ -17,13 +17,12 @@
 this.cookie = function(name, value, ttl, path, domain, secure) {
 
 	if (arguments.length > 1) {
-		return document.cookie = name + "=" + escape(value) +
+		return document.cookie = name + "=" + encodeURIComponent(value) +
 			(ttl ? "; expires=" + new Date(+new Date()+(ttl*1000)).toUTCString() : "") +
 			(path   ? "; path=" + path : "") +
 			(domain ? "; domain=" + domain : "") +
 			(secure ? "; secure" : "")
 	}
 
-	return unescape((("; "+document.cookie).split("; "+name+"=")[1]||"").split(";")[0])
+	return decodeURIComponent((("; "+document.cookie).split("; "+name+"=")[1]||"").split(";")[0])
 }
-

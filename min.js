@@ -1,2 +1,2 @@
 /*! litejs.com/MIT-LICENSE.txt */
-this.cookie=function(a,e,b,c,d,f){return 1<arguments.length?document.cookie=a+"="+escape(e)+(b?"; expires="+(new Date(+new Date+1E3*b)).toUTCString():"")+(c?"; path="+c:"")+(d?"; domain="+d:"")+(f?"; secure":""):unescape((("; "+document.cookie).split("; "+a+"=")[1]||"").split(";")[0])};
+this.cookie=function(e,t,n,r,i,s){if(arguments.length>1){return document.cookie=e+"="+encodeURIComponent(t)+(n?"; expires="+(new Date(+(new Date)+n*1e3)).toUTCString():"")+(r?"; path="+r:"")+(i?"; domain="+i:"")+(s?"; secure":"")}return decodeURIComponent((("; "+document.cookie).split("; "+e+"=")[1]||"").split(";")[0])};
