@@ -1,7 +1,7 @@
 
 
-    @version    1.0.1
-    @date       2014-08-04
+    @version    1.0.2
+    @date       2014-09-02
     @stability  3 - Stable
 
 
@@ -66,6 +66,7 @@ Notes
 
 -   Unless sent over a secure channel (such as HTTPS),
     the information in cookies is transmitted in the clear text.
+
     1.  All sensitive information conveyed in these headers is exposed to
         an eavesdropper.
     2.  A malicious intermediary could alter the headers as they travel
@@ -73,6 +74,15 @@ Notes
     3.  A malicious client could alter the Cookie header before
         transmission, with unpredictable results.
 
+-   RFC 2109 section 6.3 recommended minimum limitations:
+
+    1.  At least 4096 bytes per cookie.
+    2.  At least 20 cookies per unique host or domain name.
+    3.  At least 300 cookies total.
+
+    Setting more than 20 cookies per host may results in the oldest cookie being lost.
+
+    RFC 6265 raises limits for at least 50 cookies per domain and 3000 cookies total.
 
 
 External links
@@ -80,6 +90,7 @@ External links
 
 -   [Source-code on Github](https://github.com/litejs/browser-cookie-lite)
 -   [Package on npm](https://npmjs.org/package/browser-cookie-lite)
+-   [RFC 2109 - HTTP State Management Mechanism](http://tools.ietf.org/html/rfc2109)
 -   [RFC 6265 - HTTP State Management Mechanism](http://tools.ietf.org/html/rfc6265)
 
 
