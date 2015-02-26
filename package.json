@@ -1,6 +1,6 @@
 {
   "name": "browser-cookie-lite",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "stability": 3,
   "license": "MIT",
   "author": "Lauri Rooden <lauri@rooden.ee>",
@@ -12,6 +12,9 @@
   ],
   "main": "index.js",
   "readmeFilename": "README.md",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "build": "node node_modules/buildman/index.js --all",
     "travis-test": "istanbul cover ./tests/run.js && (coveralls < coverage/lcov.info || exit 0)",
@@ -25,7 +28,7 @@
     "buildman": "*"
   },
   "buildman": {
-    "min.js": {
+    "dist/index-min.js": {
       "banner": "/*! litejs.com/MIT-LICENSE.txt */",
       "input": [
         "index.js"
