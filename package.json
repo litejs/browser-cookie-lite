@@ -1,9 +1,9 @@
 {
   "name": "browser-cookie-lite",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "stability": 3,
-  "license": "MIT",
   "author": "Lauri Rooden <lauri@rooden.ee>",
+  "license": "MIT",
   "description": "Get and set the cookies associated with the current document in browser",
   "keywords": [
     "browser",
@@ -13,6 +13,7 @@
   "main": "index.js",
   "readmeFilename": "README.md",
   "files": [
+    "dist",
     "index.js"
   ],
   "scripts": {
