@@ -31,9 +31,7 @@
   "buildman": {
     "dist/index-min.js": {
       "banner": "/*! litejs.com/MIT-LICENSE.txt */",
-      "input": [
-        "index.js"
-      ]
+      "input": "index.js"
     }
   }
 }
