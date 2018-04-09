@@ -1,0 +1,2 @@
+/*! litejs.com/MIT-LICENSE.txt */
+this.cookie=function(e,o,n,t,i,c){return arguments.length>1?document.cookie=e+"="+encodeURIComponent(o)+(n?"; expires="+new Date(+new Date+1e3*n).toUTCString():"")+(t?"; path="+t:"")+(i?"; domain="+i:"")+(c?"; secure":""):decodeURIComponent((("; "+document.cookie).split("; "+e+"=")[1]||"").split(";")[0])}

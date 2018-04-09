@@ -4,7 +4,7 @@
   "stability": 3,
   "author": "Lauri Rooden <lauri@rooden.ee>",
   "license": "MIT",
-  "description": "Get and set the cookies associated with the current document in browser",
+  "description": "Cookie getter/setter for browser in 340 bytes",
   "keywords": [
     "browser",
     "cookie",
@@ -13,25 +13,13 @@
   "main": "index.js",
   "readmeFilename": "README.md",
   "files": [
-    "dist",
-    "index.js"
+    "*.js"
   ],
   "scripts": {
-    "build": "node node_modules/buildman/index.js --all",
-    "travis-test": "istanbul cover ./tests/run.js && (coveralls < coverage/lcov.info || exit 0)",
-    "test": "node tests/run.js"
+    "build": "litejs build -i index.js -b 'litejs.com/MIT-LICENSE.txt' -o min.js"
   },
   "repository": "git://github.com/litejs/browser-cookie-lite.git",
   "bugs": {
     "url": "https://github.com/litejs/browser-cookie-lite/issues"
-  },
-  "devDependencies": {
-    "buildman": "*"
-  },
-  "buildman": {
-    "dist/index-min.js": {
-      "banner": "/*! litejs.com/MIT-LICENSE.txt */",
-      "input": "index.js"
-    }
   }
 }
